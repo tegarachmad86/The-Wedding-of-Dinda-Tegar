@@ -3060,8 +3060,8 @@
         startCountdown();
         initScrollAnimations();
         loadWishesFromSheet();
-
-
+      }
+}
         // Spawn kelopak di hero section
         const heroSection = document.getElementById('section-hero');
         if (heroSection) createFallingPetals(heroSection);
@@ -3072,7 +3072,7 @@
           if (coupleSection) createFallingPetals(coupleSection);
         }, 500);
       }, 800);
-    }
+      
       // Auto play musik
       setTimeout(() => {
         const audio = document.getElementById('bgMusic');
@@ -3169,7 +3169,7 @@
       a.download = 'undangan-nikah.ics';
       a.click();
       showToast('📅 File kalender diunduh!');
-    }
+   }
 
     // ============================================================
     // COPY REKENING
