@@ -3155,21 +3155,40 @@
     // SAVE TO CALENDAR
     // ============================================================
     function saveToCalendar() {
-      const d = CONFIG.tanggalNikah;
-      const pad = n => String(n).padStart(2, '0');
-      const dtstart = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-      const dtend = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours() + 6)}${pad(d.getMinutes())}00`;
+  const d = CONFIG.tanggalNikah;
+  const pad = n => String(n).padStart(2, '0');
+  const start = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+  const end   = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours()+6)}${pad(d.getMinutes())}00`;
+  const title = encodeURIComponent(`Pernikahan ${CONFIG.namasingkat}`);
+  const loc   = encodeURIComponent('Masjid Ulul 'Azmi Unair C,Surabaya,Jawa Timur');
+  const desc  = encodeURIComponent(`Pernikahan ${CONFIG.namasingkat} - ${d.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'})}`);
 
-      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${dtstart}\nDTEND:${dtend}\nSUMMARY:Pernikahan ${CONFIG.namasingkat}\nDESCRIPTION:Pernikahan ${CONFIG.namasingkat}\nLOCATION:Ds Pagu, Wates, Kediri, Jawa Timur\nEND:VEVENT\nEND:VCALENDAR`;
+  // Deteksi perangkat
+  const isIOS     = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
+  const isMobile  = isIOS || isAndroid;
 
-      const blob = new Blob([ics], { type: 'text/calendar' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'undangan-nikah.ics';
-      a.click();
-      showToast('📅 File kalender diunduh!');
-    }
+  if (isIOS) {
+    // iPhone/iPad → Apple Calendar via webcal (langsung buka app kalender)
+    const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${start}\nDTEND:${end}\nSUMMARY:Pernikahan ${CONFIG.namasingkat}\nDESCRIPTION:${CONFIG.namasingkat}\nLOCATION:Ds Pagu, Wates, Kediri, Jawa Timur\nEND:VEVENT\nEND:VCALENDAR`;
+    const blob = new Blob([icsContent], { type: 'text/calendar' });
+    const url  = URL.createObjectURL(blob);
+    window.location.href = url; // iOS otomatis buka Apple Calendar
+    showToast('📅 Membuka Apple Calendar...');
+
+  } else if (isAndroid) {
+    // Android → Google Calendar langsung tanpa download
+    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${desc}&location=${loc}`;
+    window.open(gcalUrl, '_blank');
+    showToast('📅 Membuka Google Calendar...');
+
+  } else {
+    // PC/Desktop → Google Calendar di tab baru
+    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${desc}&location=${loc}`;
+    window.open(gcalUrl, '_blank');
+    showToast('📅 Membuka Google Calendar...');
+  }
+}
 
     // ============================================================
     // COPY REKENING
