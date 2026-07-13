@@ -3169,7 +3169,7 @@
 
   if (isIOS) {
     // iPhone/iPad → Apple Calendar via webcal (langsung buka app kalender)
-    const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${start}\nDTEND:${end}\nSUMMARY:Pernikahan ${CONFIG.namasingkat}\nDESCRIPTION:${CONFIG.namasingkat}\nLOCATION:Ds Pagu, Wates, Kediri, Jawa Timur\nEND:VEVENT\nEND:VCALENDAR`;
+    const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${start}\nDTEND:${end}\nSUMMARY:Pernikahan ${CONFIG.namasingkat}\nDESCRIPTION:${CONFIG.namasingkat}\nLOCATION:Masjid Ulul Azmi Unair C, Mulyorejo, Surabaya, Jawa Timur\nEND:VEVENT\nEND:VCALENDAR`;
     const blob = new Blob([icsContent], { type: 'text/calendar' });
     const url  = URL.createObjectURL(blob);
     window.location.href = url; // iOS otomatis buka Apple Calendar
