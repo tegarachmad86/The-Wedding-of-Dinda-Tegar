@@ -3157,7 +3157,7 @@
   const d = CONFIG.tanggalNikah;
   const pad = n => String(n).padStart(2, '0');
   const start = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-  const end   = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours()+6)}${pad(d.getMinutes())}00`;
+  const end   = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T130000`;
   const title = encodeURIComponent(`Pernikahan ${CONFIG.namasingkat}`);
   const loc   = encodeURIComponent('Masjid Ulul Azmi Unair C, Mulyorejo, Surabaya, Jawa Timur');
   const desc  = encodeURIComponent(`Pernikahan ${CONFIG.namasingkat} - ${d.toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'})}`);
