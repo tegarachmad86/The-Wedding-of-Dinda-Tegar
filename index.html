@@ -3257,7 +3257,7 @@
           wishes = [];
 
           // Balik urutan agar terbaru di atas
-          data.reverse().forEach(row => {
+          data.forEach(row => {
             if (!row.nama) return; // skip baris kosong
             wishes.push({
               name: row.nama,
