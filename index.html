@@ -83,7 +83,6 @@
       justify-content: center;
       min-height: 100vh;
       overflow-x: hidden;
-      overscroll-behavior: none;
     }
 
     /* ============ WRAPPER UTAMA ============ */
@@ -97,7 +96,7 @@
 
     /* ============ COVER / HALAMAN PERTAMA ============ */
     #cover-page {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -106,8 +105,8 @@
       background-image: url(Tema-04-Background.jpg);
       padding: 40px 20px;
       overflow: hidden;
-      overflow-x: clip;
-      overflow-y: hidden;
+      touch-actions: none;
+      overscroll-behavior: none;
     }
 
     /* Ornamen corner tidak terpotong meski cover overflow hidden */
@@ -3063,6 +3062,7 @@
         startCountdown();
         initScrollAnimations();
         loadWishesFromSheet();
+        document.getElmentById('cover-page').style.touchAction
 
 
         // Spawn kelopak di hero section
