@@ -1586,9 +1586,27 @@
 
     /* Daftar ucapan */
     .wishes-list {
+      max-height: 400px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+  
+  /* Scrollbar lebih tipis dan elegan */
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-accent) transparent;
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+    /* Untuk Chrome/Safari */
+    .wishes-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .wishes-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .wishes-list::-webkit-scrollbar-thumb {
+      background: var(--color-accent);
+      border-radius: 4px;
     }
 
     .wish-item {
