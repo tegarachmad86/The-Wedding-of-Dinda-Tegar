@@ -3320,11 +3320,6 @@
             document.getElementById('wishAttend').value = '';
             // Reload ucapan dari spreadsheet
             loadWishesFromSheet();
-                // ← tambahkan ini: scroll ke bawah setelah data dimuat
-            setTimeout(() => {
-            const wishesList = document.getElementById('wishesList');
-            wishesList.scrollTop = wishesList.scrollHeight;
-            }, 1000);
           }
         })
         .catch(() => showToast('❌ Gagal mengirim, coba lagi'))
@@ -3351,6 +3346,7 @@
       <div class="wish-time">🕐 ${w.time}</div>
     </div>
   `).join('');
+      list.scrollTop = list.scrollHeight;
     }
 
     function escapeHtml(text) {
