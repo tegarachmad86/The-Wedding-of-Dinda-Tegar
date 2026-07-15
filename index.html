@@ -3257,7 +3257,7 @@
           wishes = [];
 
           // Balik urutan agar terbaru di atas
-          data.forEach(row => {
+          data.reverse().forEach(row => {
             if (!row.nama) return; // skip baris kosong
             wishes.push({
               name: row.nama,
@@ -3346,7 +3346,6 @@
       <div class="wish-time">🕐 ${w.time}</div>
     </div>
   `).join('');
-      list.scrollTop = list.scrollHeight;
     }
 
     function escapeHtml(text) {
